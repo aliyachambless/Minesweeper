@@ -57,13 +57,38 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-    stroke(255,0,0);
+    stroke(255,50,50);
+    String loseMessage = "You Lose!";
+    int midRow = (int)(NUM_ROWS / 2);
+    for(int r = 0; r < NUM_ROWS; r++){
+        for(int c = 0; c < NUM_COLS; c++){
+            buttons[r][c].lost = true;
+            buttons[r][c].setLabel("");
+            if(bombs.contains(buttons[r][c])){
+                buttons[r][c].setLabel("B");
+                buttons[r][c].lost = false;
+            }
+
+        }
+    }
+    for(int i = 0; i < loseMessage.length(); i++){
+        buttons[midRow][i+((NUM_COLS - loseMessage.length())/2)].setLabel(loseMessage.substring(i, i+1));
+    }
 }
 public void displayWinningMessage()
 {
     stroke(0,255,0);
-    fill(100,255,100);
-    rect(0,0,400,400);
+    String winMessage = "You Win!";
+    int midRow = (int)(NUM_ROWS / 2);
+    for(int r = 0; r < NUM_ROWS; r++){
+        for(int c = 0; c < NUM_COLS; c++){
+            buttons[r][c].won = true;
+            buttons[r][c].setLabel("");
+        }
+    }
+    for(int i = 0; i < winMessage.length(); i++){
+        buttons[midRow][i+((NUM_COLS - winMessage.length())/2)].setLabel(winMessage.substring(i, i+1));
+    }
     
 }
 
@@ -71,7 +96,7 @@ public class MSButton
 {
     private int r, c;
     private float x,y, width, height;
-    private boolean clicked, marked;
+    private boolean clicked, marked, won, lost;
     private String label;
     
     public MSButton ( int rr, int cc )
@@ -99,7 +124,7 @@ public class MSButton
     public void mousePressed () 
     {
         clicked = true;
-        if(keyPressed){
+        if(keyPressed && key == 'm'){
             marked = !marked;
         }
         else if(bombs.contains(this)){
@@ -148,10 +173,14 @@ public class MSButton
     }
 
     public void draw () 
-    {    
-        if (marked)
+    {   
+        if(won)
+            fill(0,255,0);
+        else if(lost)
+            fill(255,0,0); 
+        else if (marked)
             fill(0);
-         else if( clicked && bombs.contains(this) ) 
+        else if( clicked && bombs.contains(this) ) 
             fill(255,0,0);
         else if(clicked)
             fill( 200 );
@@ -184,6 +213,23 @@ public class MSButton
         return numBombs;
     }
 }
-
+public void keyPressed(){
+    if(keyPressed && keyCode == 32){
+        stroke(0);
+        for(int rows = 0; rows < NUM_ROWS; rows++){
+            for(int cols = 0; cols < NUM_COLS; cols++){
+                buttons[rows][cols].won = false;
+                buttons[rows][cols].lost = false;
+                buttons[rows][cols].marked = false;
+                buttons[rows][cols].clicked = false;
+                buttons[rows][cols].label = "";
+            }
+        }
+        for(int i = bombs.size()-1; i >= 0; i--){
+            bombs.remove(i);
+        }
+        setBombs();
+    }
+}
 
 

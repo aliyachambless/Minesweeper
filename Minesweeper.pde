@@ -109,6 +109,7 @@ public class MSButton
         y = r*height;
         label = "";
         marked = clicked = false;
+        won = lost = false;
         Interactive.add( this ); // register it with the manager
     }
     public boolean isMarked()
@@ -230,6 +231,13 @@ public void keyPressed(){
         }
         setBombs();
     }
+    if(keyPressed && keyCode == UP){
+        NUM_ROWS += 1;
+        NUM_COLS += 1;
+    }
+    if(keyPressed && keyCode == DOWN){
+        NUM_ROWS -= 1;
+        NUM_COLS -= 1;
+    }
 }
-
 

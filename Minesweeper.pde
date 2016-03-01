@@ -70,7 +70,7 @@ public void displayLosingMessage()
         }
     }
     for(int i = 0; i < loseMessage.length(); i++){
-        buttons[midRow][i+((NUM_COLS - loseMessage.length())/2)].setLabel(loseMessage.substring(i, i+1));
+        buttons[midRow][i+((NUM_COLS - 1 - loseMessage.length())/2)].setLabel(loseMessage.substring(i, i+1));
     }
 }
 public void displayWinningMessage()

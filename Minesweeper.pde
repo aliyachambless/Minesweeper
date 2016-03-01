@@ -22,8 +22,6 @@ void setup ()
             buttons[rows][cols] = new MSButton(rows, cols);
         }
     }
-    
-    
     setBombs();
 }
 public void setBombs()
@@ -234,10 +232,30 @@ public void keyPressed(){
     if(keyPressed && keyCode == UP){
         NUM_ROWS += 1;
         NUM_COLS += 1;
+        size(NUM_ROWS*20, NUM_COLS*20);
+        buttons = new MSButton[NUM_ROWS][NUM_COLS];
+        background(0);
+        for(int rows = 0; rows < NUM_ROWS; rows++){
+            for(int cols = 0; cols < NUM_COLS; cols++){
+                buttons[rows][cols] = new MSButton(rows, cols);
+            }
+        }
+        nBombs = NUM_ROWS/4;
+        setBombs();
     }
     if(keyPressed && keyCode == DOWN){
         NUM_ROWS -= 1;
         NUM_COLS -= 1;
+        size(NUM_ROWS*20, NUM_COLS*20);
+        buttons = new MSButton[NUM_ROWS][NUM_COLS];
+        background(0);
+        for(int rows = 0; rows < NUM_ROWS; rows++){
+            for(int cols = 0; cols < NUM_COLS; cols++){
+                buttons[rows][cols] = new MSButton(rows, cols);
+            }
+        }
+        nBombs = NUM_ROWS/4;
+        setBombs();
     }
 }
 

@@ -229,7 +229,10 @@ public void keyPressed(){
         }
         setBombs();
     }
-    if(keyPressed && keyCode == UP){
+}
+public void keyReleased(){
+     if(keyCode == UP && NUM_ROWS < 25){
+        System.out.println("up");
         NUM_ROWS += 1;
         NUM_COLS += 1;
         buttons = new MSButton[NUM_ROWS][NUM_COLS];
@@ -242,7 +245,8 @@ public void keyPressed(){
         nBombs = NUM_ROWS/4;
         setBombs();
     }
-    if(keyPressed && keyCode == DOWN){
+    if(keyCode == DOWN && NUM_ROWS > 4){
+        System.out.println("down");
         NUM_ROWS -= 1;
         NUM_COLS -= 1;
         buttons = new MSButton[NUM_ROWS][NUM_COLS];
@@ -256,4 +260,3 @@ public void keyPressed(){
         setBombs();
     }
 }
-

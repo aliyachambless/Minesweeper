@@ -232,7 +232,7 @@ public void keyPressed(){
 }
 public void keyReleased(){
      if(keyCode == UP && NUM_ROWS < 25){
-        System.out.println("up");
+        //System.out.println("up");
         NUM_ROWS += 1;
         NUM_COLS += 1;
         buttons = new MSButton[NUM_ROWS][NUM_COLS];
@@ -246,7 +246,7 @@ public void keyReleased(){
         setBombs();
     }
     if(keyCode == DOWN && NUM_ROWS > 4){
-        System.out.println("down");
+       // System.out.println("down");
         NUM_ROWS -= 1;
         NUM_COLS -= 1;
         buttons = new MSButton[NUM_ROWS][NUM_COLS];
